@@ -1,0 +1,49 @@
+class HashTable:
+    def __init__(self,size=10):
+        self.size=size
+        self.table=[[]for _ in range(size)]
+    def hash_function(self,key):
+        return key% self.size
+    def insert(self,key):
+        index=self.hash_function(key)
+        if key not in self.table[index]:
+            self.table[index].append(key)
+            print(f"Inserted {key} at index {index}")
+        else:
+            print(f"Key {key} already exists at index {index}")
+    def search(self,key):
+        index=self.hash_function(key)
+        if key in self.table[index]:
+            print(f"Found {key} at index {index}")
+            return True
+        else:
+            print(f"{key} not found")
+            return False
+    def delete(self,key):
+        index=self.hash_function(key)
+        if key in self.table[index]:
+            self.table[index].remove(key)
+            print(f"Deleted {key} from index {index}")
+        else:
+            print(f"Cannot delete {key} (not found)")
+    def display(self):
+        for i in range (self.size):
+             print(f"Index {i} :{self.table[i]}")
+ht=HashTable()
+print("----- INSERTED ELEMENTS IN THE HASH TABLE -----")
+ht.insert(105)
+ht.insert(13)
+ht.insert(24)
+ht.insert(20)
+print("----- DISPLAY INSERTED ELEENTS -----")
+ht.display()
+print("----- SEARCH ELEMENT OPERATION -----")
+ht.search(15)
+ht.search(105)
+print("----- DELETE THE SEARCHED ELEMENT -----")
+ht.delete(55)
+ht.delete(105)
+print("----- DISPLAY NEW HASH TABLE -----")
+ht.display()
+
+ 
